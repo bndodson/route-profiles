@@ -24,14 +24,16 @@ library(rgdal)
 library(DT)
 library(lubridate)
 #Load Data
+setwd("C:/Users/bndodson/Documents/GitHub/route-profiles")
 Rt_16 <- read.csv("Route16.csv")
-Rt_21 <- read.csv("Rt_21_RouteTripList_Weekdays_Fall19.csv")
-Rt_42 <- read.csv("Rt_42_RouteTripList_Weekdays_Fall19.csv")
+Rt_21 <- read.csv("Route21.csv")
+Rt_42 <- read.csv("Route42.csv")
 Characterization <- read.csv("Characterization.csv")
 
 #Compile and Clean Data
 Rt_16 <- subset(Rt_16, Service.Type=='WEEKDAY')
 data <- rbind(Rt_21, Rt_42, Rt_16)
+data$Route <- data$ï..Route
 data <- data[complete.cases(data), ]
 
 #Create sorting column
@@ -270,7 +272,7 @@ Row
 Characterization {data-icon="fa-table"}
 ==================
 ```{r}
-Characterization <- subset(Characterization, select = -c(Route))
+Characterization <- subset(Characterization, select = -c(ï..Route))
 names(Characterization)[names(Characterization) == "Passenger.Comfort"] <- "Passenger Comfort"
 names(Characterization)[names(Characterization) == "Running.Times"] <- "Running Times"
 names(Characterization)[names(Characterization) == "Stop.Spacing"] <- "Stop Spacing"
@@ -284,9 +286,48 @@ Map {data-icon="fa-map"}
 ==================
 ```{r, message=FALSE, warning=FALSE}
 routelines <- rgdal::readOGR("https://opendata.arcgis.com/datasets/cc102b601bb947c8bb947937c80e3aa5_0.geojson", verbose='FALSE')
-mapdata <- subset(routelines, Route==16)
-m = leaflet(data=mapdata) %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolylines()
+ridership <- rgdal::readOGR("https://opendata.arcgis.com/datasets/e09e9f98bdf04eada214d2217f3adbf1_0.geojson", verbose='FALSE')
+
+maproute <- subset(routelines, Route==16)
+ridership_16 <- subset(ridership, Route==16)
+ridership_16N <- subset(ridership_16, Direction == "Northbound")
+ridership_16S <- subset(ridership_16, Direction == "Southbound")
+
+
+m = leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron, group =  "Positron") %>%
+  addPolylines(data = maproute,
+               weight = 3, 
+               group = "Route 16") %>%
+  addCircles(data = ridership_16N,
+             weight = 1, 
+             color = '#8000ff',
+             radius = ridership_16N$Weekday_Boards+ridership_16N$Weekday_Leaves, 
+             popup = paste("Stop:", ridership_16N$Stop_Name, "<br>",
+                           "Direction:", ridership_16N$Direction, "<br>",
+                           "Weekday Boards:", ridership_16N$Weekday_Boards,"<br>",
+                           "Weekday Leaves:", ridership_16N$Weekday_Leaves, "<br>"),
+             group = "Ridership Northbound"
+             )%>%
+  addCircles(data = ridership_16S,
+             weight = 1, 
+             color = 'royalblue',
+             radius = ridership_16S$Weekday_Boards+ridership_16S$Weekday_Leaves,
+             popup = paste("Stop:", ridership_16S$Stop_Name, "<br>",
+                           "Direction:", ridership_16S$Direction, "<br>",
+                           "Weekday Boards:", ridership_16S$Weekday_Boards, "<br>",
+                           "Weekday Leaves:", ridership_16S$Weekday_Leaves, "<br>"), 
+             group = "Ridership Southbound")%>%
+  addLayersControl(
+    overlayGroups = c("Route 16", "Ridership Northbound", "Ridership Southbound"),
+    options = layersControlOptions(collapsed = FALSE)
+    )%>%
+  addLegend(
+    position = "bottomright",
+    colors = c("royalblue", "#8000ff"), 
+    labels = c("Ridership Northbound", "Ridership Southbound")
+  )
+
+  
 m
 ```
