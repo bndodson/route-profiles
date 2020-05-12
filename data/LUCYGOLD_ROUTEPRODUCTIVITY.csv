@@ -1,0 +1,5 @@
+Route,Direction,Pattern,Early AM 03:00 - 05:59 Vehicle Hours,Early AM 03:00 - 05:59 Psg,Early AM 03:00 - 05:59 Psg/VH,AM Peak 06:00 - 08:59 Vehicle Hours,AM Peak 06:00 - 08:59 Psg,AM Peak 06:00 - 08:59 Psg/VH,Midday 09:00 - 14:59 Vehicle Hours,Midday 09:00 - 14:59 Psg,Midday 09:00 - 14:59 Psg/VH,PM Peak 15:00 - 17:59 Vehicle Hours,PM Peak 15:00 - 17:59 Psg,PM Peak 15:00 - 17:59 Psg/VH,Evening 18:00 - 21:59 Vehicle Hours,Evening 18:00 - 21:59 Psg,Evening 18:00 - 21:59 Psg/VH,Late Night 22:00 - 02:59 Vehicle Hours,Late Night 22:00 - 02:59 Psg,Late Night 22:00 - 02:59 Psg/VH,Total  Vehicle Hours,Total  Psg,Total  Psg/VH
+,,,0,0,0,405.5,35237.3,0,309.4,10613,0,458.4,16315,0,137.5,1997,0,0,0,0,913.5,51954,56.9
+LUCY GO,Northbound,LOOP,0,0,0,704.3,42591,60.5,839.9,25448,30.3,458.4,16315,35.6,137.5,1997,14.5,0,0,0,2140.1,86351,40.3
+LUCY GO,Northbound,30-38,0,0,0,358.3,47416,132.3,55.4,4967,89.7,0,0,0,0,0,0,0,0,0,413.7,52383,126.6
+LUCY GO,Northbound,34-38,0,0,0,153.8,15705,102.1,32.8,1424,43.4,0,0,0,0,0,0,0,0,0,186.6,17129,91.8

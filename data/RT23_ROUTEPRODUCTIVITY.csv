@@ -1,0 +1,6 @@
+﻿Route,Direction,Pattern,Early AM 03:00 - 05:59 Vehicle Hours,Early AM 03:00 - 05:59 Psg,Early AM 03:00 - 05:59 Psg/VH,AM Peak 06:00 - 08:59 Vehicle Hours,AM Peak 06:00 - 08:59 Psg,AM Peak 06:00 - 08:59 Psg/VH,Midday 09:00 - 14:59 Vehicle Hours,Midday 09:00 - 14:59 Psg,Midday 09:00 - 14:59 Psg/VH,PM Peak 15:00 - 17:59 Vehicle Hours,PM Peak 15:00 - 17:59 Psg,PM Peak 15:00 - 17:59 Psg/VH,Evening 18:00 - 21:59 Vehicle Hours,Evening 18:00 - 21:59 Psg,Evening 18:00 - 21:59 Psg/VH,Late Night 22:00 - 02:59 Vehicle Hours,Late Night 22:00 - 02:59 Psg,Late Night 22:00 - 02:59 Psg/VH,Total  Vehicle Hours,Total  Psg,Total  Psg/VH
+,,,81.3,2811.3,0,445.3,30822.5,0,810.5,51728.5,0,490.8,31748.5,0,276.9,12422,0,71,2544.7,0,1146.3,68081,59.4
+23,Southbound,S23,192.6,6287,32.6,502.3,33432,66.6,937.8,54255,57.9,562.6,32393,57.6,264.6,10833,40.9,101.6,3279,32.3,2561.5,140479,54.8
+23,Northbound,N23,59.9,2808,46.9,388.4,28213,72.6,683.1,49202,72,418.9,31104,74.2,289.2,14011,48.4,108.2,4304,39.8,1947.8,129642,66.6
+23,Southbound,S2,14.7,467,31.7,0,0,0,0,0,0,0,0,0,0,0,0,3.2,51,15.7,18,518,28.8
+23,Northbound,N2,57.8,1683,29.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57.8,1683,29.1

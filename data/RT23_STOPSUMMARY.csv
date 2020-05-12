@@ -1,0 +1,210 @@
+﻿Route,Direction,Stop Code,Stop,Ons,Offs,Load,Passenger Miles,Lat,Lon
+,,,,16599,16471,52,40185.9,,
+,,,,8415,8357,50,21293.7,,
+23,Northbound,16845,11th St & Arch St,274,8,38,289.1,39.95367,-75.157836
+23,Northbound,16867,11th St & Berks St,45,47,38,245.2,39.980915,-75.15187
+23,Northbound,16855,11th St & Brown St,48,58,39,159.8,39.966552,-75.154983
+23,Northbound,17855,11th St & Callowhill St,42,41,40,137.1,39.958847,-75.156684
+23,Northbound,16865,11th St & Cecil B Moore Av,124,68,39,251.7,39.97784,-75.152542
+23,Northbound,16873,11th St & Cumberland St,62,70,36,244.7,39.990089,-75.149856
+23,Northbound,16871,11th St & Dauphin St,53,33,37,247.2,39.987087,-75.15052
+23,Northbound,16869,11th St & Diamond St,38,25,37,262.6,39.983894,-75.151206
+23,Northbound,16854,11th St & Fairmount Av,41,82,40,141.7,39.965599,-75.155204
+23,Northbound,1185,11th St & Girard Av,218,125,38,294.5,39.970611,-75.154121
+23,Northbound,16852,11th St & Green St,38,58,40,224.4,39.962673,-75.155845
+23,Northbound,16874,11th St & Huntingdon St,34,58,35,150.5,39.991577,-75.149536
+23,Northbound,16863,11th St & Jefferson St,29,39,37,231,39.97507,-75.153144
+23,Northbound,32331,11th St & Market St,2043,0,33,293.3,39.951602,-75.158264
+23,Northbound,16862,11th St & Master St,41,51,37,220.1,39.97372,-75.153434
+23,Northbound,16866,11th St & Montgomery Av,21,42,38,254.9,39.979362,-75.152206
+23,Northbound,16849,11th St & Noble St,6,12,39,82.5,39.959697,-75.156509
+23,Northbound,16868,11th St & Norris St,32,36,37,241.2,39.982425,-75.151542
+23,Northbound,16864,11th St & Oxford St,18,30,37,214.1,39.976501,-75.152832
+23,Northbound,16856,11th St & Parrish St,27,51,39,171.5,39.967658,-75.154754
+23,Northbound,16857,11th St & Poplar St,49,50,38,256.2,39.968841,-75.154487
+23,Northbound,16846,11th St & Race St,46,26,39,184,39.95549,-75.157447
+23,Northbound,16850,11th St & Ridge Av,11,18,39,213.6,39.960205,-75.156394
+23,Northbound,16851,11th St & Spring Garden St,112,84,40,189.1,39.961532,-75.156097
+23,Northbound,16870,11th St & Susquehanna Av,63,65,36,257.6,39.985504,-75.150856
+23,Northbound,16858,11th St & Thompson St,72,52,38,212.4,39.972415,-75.153717
+23,Northbound,16847,11th St & Vine St,34,21,39,350.2,39.95668,-75.157157
+23,Northbound,16853,11th St & Wallace St,22,51,39,216.8,39.964164,-75.155532
+23,Northbound,16872,11th St & York St,56,58,36,249.1,39.988578,-75.150192
+23,Northbound,21222,Chestnut Hill Loop,40,418,2,0,40.077716,-75.208297
+23,Northbound,16893,Germantown Av & 20th St,21,52,44,215.9,40.021888,-75.15818
+23,Northbound,17044,Germantown Av & Abbottsford Av,39,83,45,436.2,40.026641,-75.160415
+23,Northbound,17770,Germantown Av & Abington Av,0,9,15,69.8,40.071926,-75.201644
+23,Northbound,17405,Germantown Av & Allens Ln,29,132,17,96.6,40.061191,-75.191719
+23,Northbound,17055,Germantown Av & Armat St,35,84,40,189.3,40.035011,-75.173576
+23,Northbound,17050,Germantown Av & Ashmead St,85,168,46,227.3,40.030849,-75.166412
+23,Northbound,31460,Germantown Av & Berkley St,122,96,45,657.9,40.023815,-75.159408
+23,Northbound,17051,Germantown Av & Bringhurst St,72,118,44,256.6,40.031536,-75.167655
+23,Northbound,1189,Germantown Av & Butler St,130,50,48,391.9,40.010795,-75.15129
+23,Northbound,16877,Germantown Av & Cambria St,64,38,41,255.4,39.996032,-75.147033
+23,Northbound,17227,Germantown Av & Carpenter Ln,9,71,25,73.2,40.05471,-75.186782
+23,Northbound,949,Germantown Av & Chelten Av,421,717,38,169.8,40.035785,-75.174545
+23,Northbound,17210,Germantown Av & Cliveden St,9,71,33,156.2,40.047016,-75.18267
+23,Northbound,17053,Germantown Av & Coulter St,68,151,42,369.5,40.033138,-75.170448
+23,Northbound,16892,Germantown Av & Dennie St,63,99,46,396.1,40.020446,-75.156776
+23,Northbound,17207,Germantown Av & Duval St,20,109,35,164.7,40.044677,-75.181556
+23,Northbound,1188,Germantown Av & Erie Av,946,396,47,408.6,40.009021,-75.150657
+23,Northbound,17778,Germantown Av & Evergreen Av,23,84,9,63.8,40.076553,-75.207176
+23,Northbound,16879,Germantown Av & Glenwood Av,50,31,43,275.2,39.99913,-75.147247
+23,Northbound,17228,Germantown Av & Gorgas Ln,11,49,24,134.8,40.055423,-75.187225
+23,Northbound,17406,Germantown Av & Gowen Av,9,36,17,127.9,40.062522,-75.19271
+23,Northbound,17776,Germantown Av & Gravers Ln,3,67,11,57.8,40.075111,-75.204742
+23,Northbound,17196,Germantown Av & Haines St,34,84,37,155.9,40.03836,-75.176811
+23,Northbound,17771,Germantown Av & Hartwell Ln,2,33,16,54.9,40.073173,-75.202529
+23,Northbound,17197,Germantown Av & High St,27,56,37,197.5,40.03926,-75.177543
+23,Northbound,17777,Germantown Av & Highland Av,1,80,10,29.7,40.076023,-75.206268
+23,Northbound,16881,Germantown Av & Hilton St,146,16,44,185.9,40.001625,-75.148315
+23,Northbound,17213,Germantown Av & Hortter St,17,93,27,122.3,40.050537,-75.184524
+23,Northbound,16888,Germantown Av & Hunting Park Av,216,131,50,350.9,40.015743,-75.153678
+23,Northbound,16878,Germantown Av & Indiana Av,57,48,42,287.3,39.997516,-75.146697
+23,Northbound,17208,Germantown Av & Johnson St,37,70,34,158.7,40.045864,-75.182098
+23,Northbound,16890,Germantown Av & Juniata St,43,76,49,248.5,40.017971,-75.154907
+23,Northbound,1186,Germantown Av & Lehigh Av,315,185,35,269.3,39.992954,-75.14785
+23,Northbound,17047,Germantown Av & Logan St,101,201,45,342.9,40.028232,-75.161994
+23,Northbound,16887,Germantown Av & Lycoming St,30,69,48,333.5,40.01435,-75.152946
+23,Northbound,17407,Germantown Av & McPherson St,3,19,17,52.3,40.064342,-75.194046
+23,Northbound,30859,Germantown Av & Mermaid Ln,3,68,16,82.1,40.067672,-75.197166
+23,Northbound,17410,Germantown Av & Moreland Av,9,22,16,66.2,40.068641,-75.198623
+23,Northbound,17404,Germantown Av & Mt Airy Av,25,129,23,84.7,40.060165,-75.190917
+23,Northbound,17403,Germantown Av & Mt Pleasant Av,44,104,25,169.8,40.058357,-75.18927
+23,Northbound,17052,Germantown Av & Penn St,26,66,45,250.6,40.032329,-75.169075
+23,Northbound,17215,Germantown Av & Phil Ellena St,20,126,26,124.5,40.051567,-75.185104
+23,Northbound,16886,Germantown Av & Pike St,25,63,47,464.3,40.012424,-75.151985
+23,Northbound,17056,Germantown Av & Price St,18,39,38,139,40.036624,-75.17543
+23,Northbound,16883,Germantown Av & Rising Sun Av,84,62,45,372,40.003856,-75.149101
+23,Northbound,17191,Germantown Av & Rittenhouse St,28,73,38,168.4,40.037406,-75.176017
+23,Northbound,17408,Germantown Av & Roumfort Rd,6,16,17,204.4,40.06491,-75.194961
+23,Northbound,16891,Germantown Av & Saint Paul St,41,89,47,393.4,40.018962,-75.155525
+23,Northbound,17054,Germantown Av & School House Ln,43,110,40,183.7,40.034366,-75.172538
+23,Northbound,16880,Germantown Av & Sedgley Av,101,114,42,186.2,40.000602,-75.147911
+23,Northbound,17402,Germantown Av & Sedgwick St,26,145,24,149.7,40.056827,-75.18795
+23,Northbound,17048,Germantown Av & Seymour St,60,106,47,235.1,40.029262,-75.163635
+23,Northbound,17212,Germantown Av & Sharpnack St,24,115,28,159.2,40.049251,-75.183822
+23,Northbound,17218,Germantown Av & Slocum St,24,69,26,161.1,40.053134,-75.185966
+23,Northbound,16876,Germantown Av & Somerset St,124,78,38,260.5,39.994537,-75.14743
+23,Northbound,17774,Germantown Av & Southampton Av,5,58,12,62.9,40.074153,-75.203323
+23,Northbound,17411,Germantown Av & Springfield Av,1,8,16,71.5,40.069568,-75.199691
+23,Northbound,16889,Germantown Av & Staub St,15,20,49,199.5,40.017166,-75.154426
+23,Northbound,16884,Germantown Av & Tioga St,101,123,45,307.8,40.005802,-75.149658
+23,Northbound,17202,Germantown Av & Tulpehocken St,32,111,38,198.2,40.042022,-75.179832
+23,Northbound,17211,Germantown Av & Upsal St,14,74,32,135.4,40.048187,-75.183288
+23,Northbound,16885,Germantown Av & Venango St,58,44,46,301.5,40.007427,-75.150169
+23,Northbound,17200,Germantown Av & Walnut Ln,169,134,39,286.1,40.040405,-75.178482
+23,Northbound,17206,Germantown Av & Washington Ln,34,112,36,219.6,40.043212,-75.180786
+23,Northbound,16882,Germantown Av & Westmoreland St,14,21,44,241.2,40.002586,-75.148689
+23,Northbound,1190,Germantown Av & Westview St - FS,8,36,26,47.8,40.052692,-75.185729
+23,Northbound,17412,Germantown Av & Willow Grove Av,7,53,15,72.7,40.070697,-75.200653
+23,Northbound,16894,Germantown Av & Windrim Av,105,71,46,261.1,40.02272,-75.158882
+23,Northbound,17049,Germantown Av & Wister St,63,172,47,304.8,40.029945,-75.164825
+23,Northbound,16875,Huntingdon St & Germantown Av,61,77,34,258.5,39.991447,-75.148483
+,,,,8184,8114,52,18892.2,,
+23,Southbound,16102,10th St & Cumberland St,62,65,31,192.1,39.990104,-75.148414
+23,Southbound,16104,10th St & Dauphin St,33,36,32,202.3,39.987121,-75.149063
+23,Southbound,16105,10th St & Susquehanna Av,18,68,31,149.5,39.985515,-75.149414
+23,Southbound,16103,10th St & York St,51,51,31,186.6,39.98859,-75.14875
+23,Southbound,16844,11th St & Chestnut St,126,30,5,23.8,39.950103,-75.158576
+23,Southbound,32331,11th St & Market St,44,232,2,0,39.951602,-75.158264
+23,Southbound,16843,11th St & Walnut St,48,42,4,17.4,39.948581,-75.158912
+23,Southbound,16130,12th St & Arch St,14,246,24,166.2,39.954067,-75.159545
+23,Southbound,16111,12th St & Berks St,28,34,32,188.4,39.981384,-75.153472
+23,Southbound,16120,12th St & Brown St,33,26,30,85.7,39.967254,-75.156623
+23,Southbound,16125,12th St & Buttonwood St,12,17,28,108.3,39.961116,-75.157966
+23,Southbound,16127,12th St & Callowhill St,29,26,28,143.1,39.959243,-75.15837
+23,Southbound,16113,12th St & Cecil B Moore Av,70,123,31,167.3,39.978271,-75.154212
+23,Southbound,16131,12th St & Chestnut St,5,202,8,35.4,39.9505,-75.160293
+23,Southbound,16109,12th St & Diamond St,23,25,32,177.1,39.98431,-75.1529
+23,Southbound,16121,12th St & Fairmount Av,48,54,31,135.1,39.96627,-75.156837
+23,Southbound,1180,12th St & Girard Av,95,215,29,194,39.971126,-75.155792
+23,Southbound,16123,12th St & Green St,14,35,30,84.2,39.963088,-75.157539
+23,Southbound,16115,12th St & Jefferson St,37,33,31,167.9,39.975486,-75.154815
+23,Southbound,756,12th St & Market St,29,765,10,61.7,39.952186,-75.15995
+23,Southbound,16116,12th St & Master St,37,32,32,156,39.974124,-75.155128
+23,Southbound,16112,12th St & Montgomery Av,74,26,32,197.9,39.979846,-75.153877
+23,Southbound,16126,12th St & Noble St,18,14,28,80,39.960037,-75.15818
+23,Southbound,16110,12th St & Norris St,41,25,32,180.3,39.982856,-75.15319
+23,Southbound,16114,12th St & Oxford St,24,21,31,173,39.976905,-75.154525
+23,Southbound,16119,12th St & Parrish St,50,54,29,98.4,39.968208,-75.156417
+23,Southbound,16118,12th St & Poplar St,43,32,30,125.9,39.969425,-75.156166
+23,Southbound,16129,12th St & Race St,12,83,26,190.4,39.955886,-75.159111
+23,Southbound,16124,12th St & Ridge Av,43,78,29,116.8,39.962268,-75.157707
+23,Southbound,16108,12th St & Susquehanna Av - FS,40,41,32,163.6,39.985656,-75.15261
+23,Southbound,16117,12th St & Thompson St,30,45,30,209.5,39.972854,-75.155418
+23,Southbound,16128,12th St & Vine St,12,48,27,213.2,39.957824,-75.158691
+23,Southbound,16122,12th St & Wallace St,44,23,31,133.1,39.964668,-75.15718
+23,Southbound,16132,12th St & Walnut St,3,185,5,36.3,39.948966,-75.160621
+23,Southbound,21222,Chestnut Hill Loop,321,0,11,24.8,40.077716,-75.208297
+23,Southbound,15652,Germantown Av &  Haines St,56,19,44,124.6,40.038471,-75.177101
+23,Southbound,15708,Germantown Av & Abbottsford Av,65,52,50,613.4,40.02679,-75.160736
+23,Southbound,15434,Germantown Av & Abington Av,14,0,17,63.9,40.072006,-75.201881
+23,Southbound,16087,Germantown Av & Allegheny Av,107,239,33,270.3,40.001094,-75.148284
+23,Southbound,15442,Germantown Av & Allens Ln,74,25,22,88.1,40.061298,-75.191986
+23,Southbound,15655,Germantown Av & Armat St,107,38,43,183.1,40.035057,-75.173866
+23,Southbound,15704,Germantown Av & Ashmead St,191,92,46,227.3,40.030918,-75.166831
+23,Southbound,15710,Germantown Av & Berkley St,62,44,51,279.7,40.024078,-75.159706
+23,Southbound,250,Germantown Av & Bethlehem Pk - FS,260,0,14,53.7,40.076831,-75.207969
+23,Southbound,15703,Germantown Av & Bringhurst St,83,83,44,197.3,40.03152,-75.167915
+23,Southbound,21224,Germantown Av & Broad St,64,632,34,121.3,40.010135,-75.151184
+23,Southbound,1176,Germantown Av & Butler St,40,222,46,197.2,40.011085,-75.151603
+23,Southbound,16099,Germantown Av & Cambria St,42,72,30,212.4,39.996257,-75.147155
+23,Southbound,15464,Germantown Av & Carpenter Ln - FS,1,0,30,137.1,40.054649,-75.186943
+23,Southbound,950,Germantown Av & Chelten Av,734,563,43,201.9,40.035892,-75.174896
+23,Southbound,15495,Germantown Av & Cliveden St,70,14,34,162,40.047126,-75.182914
+23,Southbound,15701,Germantown Av & Coulter St,156,61,41,237.2,40.033161,-75.170745
+23,Southbound,15713,Germantown Av & Dennie St,80,51,52,351.9,40.020526,-75.157073
+23,Southbound,15646,Germantown Av & Duval St,81,30,37,232.2,40.044891,-75.181816
+23,Southbound,31613,Germantown Av & Erie Av,286,410,32,276.9,40.009403,-75.150955
+23,Southbound,16097,Germantown Av & Glenwood Av,33,52,31,230.8,39.999313,-75.147521
+23,Southbound,15462,Germantown Av & Gorgas Ln,81,11,30,90.9,40.055522,-75.187446
+23,Southbound,15441,Germantown Av & Gowen Av,33,11,19,114.6,40.062808,-75.193115
+23,Southbound,15429,Germantown Av & Gravers Ln,66,0,15,60.6,40.075119,-75.205032
+23,Southbound,15433,Germantown Av & Hartwell Ln,46,1,17,75.3,40.073253,-75.202766
+23,Southbound,15651,Germantown Av & Harvey St,66,21,44,149.3,40.039279,-75.177757
+23,Southbound,15427,Germantown Av & Highland Av,48,1,14,62.1,40.076015,-75.206527
+23,Southbound,15494,Germantown Av & Hortter St,90,29,29,144.1,40.05043,-75.184669
+23,Southbound,15718,Germantown Av & Hunting Park Av,150,255,45,350.1,40.016006,-75.153999
+23,Southbound,16101,Germantown Av & Huntingdon St,78,93,28,191.5,39.9916,-75.148376
+23,Southbound,16098,Germantown Av & Indiana Av,40,42,32,221.3,39.997776,-75.146896
+23,Southbound,18582,Germantown Av & Johnson St,63,25,36,142.7,40.045928,-75.182312
+23,Southbound,15716,Germantown Av & Juniata St,66,39,52,243,40.01815,-75.155204
+23,Southbound,1179,Germantown Av & Lehigh Av,170,327,28,203.9,39.993198,-75.147949
+23,Southbound,15707,Germantown Av & Logan St,176,108,49,429.4,40.028339,-75.162384
+23,Southbound,15719,Germantown Av & Lycoming St,49,35,46,388.8,40.014461,-75.153182
+23,Southbound,15705,Germantown Av & Manheim St,114,97,46,331.6,40.030239,-75.165626
+23,Southbound,15440,Germantown Av & McPherson St - MBFS,13,6,19,88.2,40.063999,-75.193969
+23,Southbound,30860,Germantown Av & Mermaid Ln,69,17,19,224,40.067752,-75.197517
+23,Southbound,15437,Germantown Av & Moreland Av,29,9,18,86.6,40.068756,-75.198982
+23,Southbound,15443,Germantown Av & Mt Airy Av,175,34,29,172.3,40.060214,-75.191154
+23,Southbound,15444,Germantown Av & Mt Pleasant Av,132,47,29,153.8,40.058429,-75.189544
+23,Southbound,15702,Germantown Av & Penn St,68,26,43,280.8,40.032371,-75.169471
+23,Southbound,15467,Germantown Av & Phil Ellena St,68,18,30,159.6,40.051788,-75.185401
+23,Southbound,15720,Germantown Av & Pike St,37,24,46,341.9,40.012672,-75.152282
+23,Southbound,15654,Germantown Av & Price St,58,42,45,180,40.036792,-75.17572
+23,Southbound,1178,Germantown Av & Rising Sun Av,71,75,34,178.9,40.003971,-75.149284
+23,Southbound,15653,Germantown Av & Rittenhouse St,63,23,45,194.2,40.037811,-75.176559
+23,Southbound,15712,Germantown Av & Roberts Av,38,15,52,321.5,40.021762,-75.158271
+23,Southbound,15439,Germantown Av & Roumfort Rd,24,13,19,88,40.064884,-75.19522
+23,Southbound,15715,Germantown Av & Saint Paul St,49,30,51,244.3,40.019187,-75.155853
+23,Southbound,15700,Germantown Av & School House Ln,115,68,43,369.6,40.034389,-75.172828
+23,Southbound,15460,Germantown Av & Sedgwick St,126,45,29,142.4,40.056972,-75.188209
+23,Southbound,15706,Germantown Av & Seymour St,136,63,48,303.4,40.029254,-75.163887
+23,Southbound,15492,Germantown Av & Sharpnack St,115,22,32,114.6,40.04927,-75.184013
+23,Southbound,15466,Germantown Av & Slocum St,117,29,31,94.9,40.053306,-75.186241
+23,Southbound,16100,Germantown Av & Somerset St,52,95,30,217,39.994758,-75.147552
+23,Southbound,15430,Germantown Av & Southampton Av,50,3,16,66.9,40.074333,-75.20372
+23,Southbound,15436,Germantown Av & Springfield Av,12,0,18,58.8,40.069545,-75.199867
+23,Southbound,15717,Germantown Av & Staub St,17,14,52,262.2,40.017131,-75.154594
+23,Southbound,16080,Germantown Av & Tioga St,130,104,34,313.7,40.006042,-75.149909
+23,Southbound,15648,Germantown Av & Tulpehocken St,80,32,41,256.3,40.042121,-75.180084
+23,Southbound,15493,Germantown Av & Upsal St,71,25,33,165.6,40.048374,-75.183563
+23,Southbound,16076,Germantown Av & Venango St,81,68,35,234.7,40.007606,-75.150405
+23,Southbound,15649,Germantown Av & Walnut Ln,195,80,43,250.2,40.040641,-75.178878
+23,Southbound,15647,Germantown Av & Washington Ln,172,26,40,191.8,40.043262,-75.180999
+23,Southbound,16085,Germantown Av & Westmoreland St,24,18,34,276.6,40.00283,-75.148933
+23,Southbound,1175,Germantown Av & Westview St,73,13,31,75.2,40.052452,-75.185752
+23,Southbound,15435,Germantown Av & Willow Grove Av,42,2,17,96.8,40.070983,-75.201087
+23,Southbound,15711,Germantown Av & Windrim Av,122,181,51,264.3,40.022857,-75.159126
+23,Southbound,16369,Susquehanna Av & 11th St,7,21,32,176,39.985645,-75.150787

@@ -1,0 +1,140 @@
+﻿Route,Direction,Stop Code,Stop,Ons,Offs,Load,Passenger Miles,Lat,Lon
+,,,,10262,10179,42,15637.4,,
+,,,,4892,4857,34,7406.4,,
+21,Eastbound,93,23rd St & Market St - FS,49,139,22,130.3,39.953918,-75.17794
+21,Eastbound,21445,33rd St & Market St,21,23,23,116.8,39.955406,-75.189437
+21,Eastbound,1148,69th St Transportation Center South Terminal,772,0,17,138.4,39.962078,-75.258285
+21,Eastbound,20971,Chestnut St & 2nd St,4,89,2,6.3,39.948333,-75.144203
+21,Eastbound,20970,Chestnut St & 3rd St,0,79,3,16.7,39.948589,-75.146141
+21,Eastbound,14909,Chestnut St & 4th St - MBNS,2,106,6,27.1,39.948867,-75.148254
+21,Eastbound,6111,Chestnut St & 6th St,16,124,8,48.5,39.949188,-75.150909
+21,Eastbound,6112,Chestnut St & 7th St,10,128,9,37.3,39.949375,-75.152488
+21,Eastbound,6113,Chestnut St & 8th St,28,195,11,47.8,39.949569,-75.15406
+21,Eastbound,6114,Chestnut St & 9th St,19,122,14,61.7,39.949768,-75.155662
+21,Eastbound,14908,Chestnut St & 10th St,32,96,15,68.6,39.949958,-75.157188
+21,Eastbound,6057,Chestnut St & 11th St,47,167,16,74.8,39.950168,-75.158767
+21,Eastbound,6058,Chestnut St & 12th St,54,133,17,84.6,39.950347,-75.160339
+21,Eastbound,6059,Chestnut St & 13th St,79,135,20,88.2,39.950538,-75.16188
+21,Eastbound,6060,Chestnut St & 15th St,131,167,21,109.8,39.951011,-75.165718
+21,Eastbound,14907,Chestnut St & 16th St,131,176,21,106.3,39.951202,-75.167312
+21,Eastbound,6061,Chestnut St & 17th St,109,132,22,107.5,39.951385,-75.168869
+21,Eastbound,6062,Chestnut St & 18th St,90,104,23,112.6,39.951599,-75.170463
+21,Eastbound,14906,Chestnut St & 19th St,108,160,22,110.5,39.95182,-75.172004
+21,Eastbound,6064,Chestnut St & 20th St,95,117,22,106.4,39.951999,-75.173576
+21,Eastbound,6065,Chestnut St & 21st St,64,71,22,132.7,39.952228,-75.175506
+21,Eastbound,6066,Chestnut St & 22nd St - FS,55,51,22,86.3,39.952392,-75.17675
+21,Eastbound,6067,Chestnut St & 23rd St,2,17,22,97.1,39.95259,-75.178268
+21,Eastbound,30634,Chestnut St & 33rd St,13,44,23,156.6,39.95404,-75.189888
+21,Eastbound,21354,Chestnut St & 34th St,81,104,24,172.4,39.954296,-75.191932
+21,Eastbound,21353,Chestnut St & 36th St,93,135,26,226.4,39.954624,-75.194564
+21,Eastbound,623,Chestnut St & 37th St,67,62,30,175.3,39.954868,-75.196548
+21,Eastbound,622,Chestnut St & 38th St,56,73,31,180.2,39.955112,-75.1986
+21,Eastbound,598,Chestnut St & 39th St,49,52,32,128.7,39.955291,-75.20005
+21,Eastbound,421,Chestnut St & 40th St,143,148,32,0,39.95557,-75.202384
+21,Eastbound,592,Chestnut St & 41st St,36,13,34,223.4,39.955886,-75.204879
+21,Eastbound,591,Chestnut St & 42nd St,53,47,33,136.7,39.956089,-75.206428
+21,Eastbound,590,Chestnut St & 43rd St,85,56,33,184.5,39.956344,-75.208541
+21,Eastbound,516,Chestnut St & 44th St,63,39,32,113.7,39.956489,-75.209861
+21,Eastbound,19149,Chestnut St & 45th St,80,39,31,135.5,39.95671,-75.211471
+21,Eastbound,19124,Chestnut St & 46th St,67,43,32,160.7,39.956958,-75.213417
+21,Eastbound,19123,Chestnut St & 47th St,43,23,31,82.7,39.95721,-75.215423
+21,Eastbound,30194,Chestnut St & 48th St,67,47,32,163.5,39.957439,-75.217491
+21,Eastbound,30195,Chestnut St & 49th St,76,71,30,147.7,39.957698,-75.219383
+21,Eastbound,19122,Chestnut St & 50th St,88,54,29,152.3,39.957935,-75.221343
+21,Eastbound,19121,Chestnut St & 51st St,73,40,28,152.4,39.958179,-75.223335
+21,Eastbound,420,Chestnut St & 52nd St,223,206,26,0,39.958423,-75.225303
+21,Eastbound,19120,Chestnut St & 53rd St,44,45,25,141.9,39.958667,-75.227241
+21,Eastbound,19081,Chestnut St & 54th St,52,37,24,131.8,39.958885,-75.229026
+21,Eastbound,19080,Chestnut St & 55th St,82,43,22,156.4,39.959156,-75.231185
+21,Eastbound,19079,Chestnut St & 56th St,148,80,22,146.6,39.959419,-75.233245
+21,Eastbound,19078,Chestnut St & 57th St,127,54,22,133.9,39.959678,-75.235275
+21,Eastbound,19077,Chestnut St & 58th St,58,23,20,121.6,39.959907,-75.237197
+21,Eastbound,19076,Chestnut St & 59th St,61,26,18,122,39.960151,-75.239173
+21,Eastbound,419,Chestnut St & 60th St,158,74,16,0,39.960388,-75.241203
+21,Eastbound,19075,Chestnut St & 61st St,45,29,17,110,39.960639,-75.243209
+21,Eastbound,19074,Chestnut St & 62nd St - FS,72,34,16,83.2,39.960834,-75.244735
+21,Eastbound,25708,Chestnut St & 63rd St - FS,69,35,17,107.4,39.961109,-75.24681
+21,Eastbound,6115,Chestnut St & Broad St,127,211,20,0,39.950805,-75.164039
+21,Eastbound,30633,Chestnut St & Farragut St,40,20,31,80.5,39.957084,-75.214408
+21,Eastbound,14915,Chestnut St & Front St,22,42,1,6.3,39.948131,-75.142578
+21,Eastbound,10285,Market St & 24th St,3,8,23,140.3,39.95425,-75.179244
+21,Eastbound,18996,Market St & 30th St,38,52,23,165.2,39.954822,-75.183563
+21,Eastbound,21528,Market St & 31st St,17,24,23,155.2,39.955051,-75.18544
+21,Eastbound,21527,Market St & 32nd St,14,21,23,239.7,39.955402,-75.188354
+21,Eastbound,18991,Market St & 63rd St,42,13,18,24.5,39.96265,-75.247268
+21,Eastbound,19073,Market St & 63rd St,36,31,18,101.2,39.962413,-75.247039
+21,Eastbound,30632,Market St & Chatham Rd,52,0,18,65.6,39.962039,-75.256614
+21,Eastbound,25707,Market St & Glencoe Rd,15,4,17,37.3,39.9626,-75.252738
+21,Eastbound,21351,Market St & Marlborough Rd,53,15,17,67.9,39.962287,-75.255119
+21,Eastbound,19032,Market St & Millbourne Av,50,30,17,228.5,39.962711,-75.251937
+21,Eastbound,21352,Market St & Powell Rd,37,14,17,41.8,39.962493,-75.253631
+21,Eastbound,21529,Market St & Schuylkill Av,24,25,24,188.7,39.954551,-75.181541
+21,Eastbound,593,Penn's Landing - 1,32,40,1,0,39.948715,-75.140228
+,,,,5370,5322,42,8230.9,,
+21,Westbound,20975,2nd St & Chestnut St,29,10,4,20,39.948482,-75.144126
+21,Westbound,20974,2nd St & Walnut St,46,4,4,29.7,39.94696,-75.144462
+21,Westbound,31291,63rd St & Chestnut St,12,46,15,109.9,39.961116,-75.247062
+21,Westbound,1148,69th St Transportation Center South Terminal,8,666,2,0,39.962078,-75.258285
+21,Westbound,3210,Market St & 2nd St - 1 MBNS,103,54,4,20.9,39.950016,-75.143241
+21,Westbound,25711,Market St & 63rd St - FS,47,43,15,141.9,39.962913,-75.247268
+21,Westbound,21387,Market St & Burd Av,3,11,15,34.3,39.962997,-75.250854
+21,Westbound,21390,Market St & Chatham Rd,9,47,14,65.6,39.962177,-75.256477
+21,Westbound,19031,Market St & Millbourne Av,7,17,15,33.1,39.962856,-75.251724
+21,Westbound,21388,Market St & Powell Ln,8,23,15,109.4,39.962608,-75.25357
+21,Westbound,25706,Market St & Sellers Av,3,19,14,38.5,39.96273,-75.252571
+21,Westbound,593,Penn's Landing - 1,88,0,2,6.8,39.948715,-75.140228
+21,Westbound,30631,Penn's Landing - 2,31,3,2,13.2,39.949794,-75.140487
+21,Westbound,20972,Walnut St & 3rd St - FS,72,5,6,27.1,39.947216,-75.146736
+21,Westbound,20973,Walnut St & 4th St - MBFS,61,0,6,23.7,39.947433,-75.148452
+21,Westbound,14880,Walnut St & 5th St - FS,104,8,11,0,39.947582,-75.149726
+21,Westbound,14881,Walnut St & 7th St,227,13,18,53.6,39.947925,-75.152511
+21,Westbound,14882,Walnut St & 8th St,197,11,21,71.7,39.948131,-75.15406
+21,Westbound,14883,Walnut St & 9th St,149,20,24,80,39.948318,-75.155662
+21,Westbound,14884,Walnut St & 10th St,133,23,26,92.8,39.948513,-75.157218
+21,Westbound,14885,Walnut St & 11th St,163,41,28,99.4,39.948703,-75.158828
+21,Westbound,14886,Walnut St & 12th St,147,40,30,112,39.948894,-75.160385
+21,Westbound,14887,Walnut St & 13th St,137,51,30,122,39.949089,-75.16201
+21,Westbound,14079,Walnut St & 15th St,227,98,32,129.6,39.949577,-75.165809
+21,Westbound,14080,Walnut St & 16th St,224,101,35,137.4,39.949775,-75.167396
+21,Westbound,14081,Walnut St & 17th St,188,97,35,137,39.949977,-75.168968
+21,Westbound,14084,Walnut St & 18th St,178,96,36,160.1,39.950149,-75.170455
+21,Westbound,14085,Walnut St & 19th St,193,102,37,154.5,39.950374,-75.172111
+21,Westbound,14086,Walnut St & 20th St,189,85,38,201,39.950576,-75.173637
+21,Westbound,14088,Walnut St & 21st St,142,63,38,180.6,39.950809,-75.175529
+21,Westbound,14089,Walnut St & 22nd St,137,71,38,0,39.951,-75.177169
+21,Westbound,131,Walnut St & 23rd St,73,43,40,156.9,39.951145,-75.178306
+21,Westbound,19542,Walnut St & 24th St - MBFS,61,21,42,560.6,39.951328,-75.179618
+21,Westbound,432,Walnut St & 30th St - FS,76,83,41,447.9,39.951881,-75.18428
+21,Westbound,25704,Walnut St & 32nd St - FS,16,30,40,231.9,39.952354,-75.18798
+21,Westbound,21359,Walnut St & 33rd St,36,40,39,246.3,39.952587,-75.189933
+21,Westbound,21360,Walnut St & 34th St,137,206,39,311.4,39.952838,-75.191986
+21,Westbound,21361,Walnut St & 36th St,78,145,40,223.7,39.953174,-75.194664
+21,Westbound,21362,Walnut St & 37th St,46,104,39,211.2,39.953418,-75.196647
+21,Westbound,21363,Walnut St & 38th St,93,160,39,167.4,39.953639,-75.198577
+21,Westbound,21364,Walnut St & 39th St,37,89,39,244.5,39.953857,-75.200141
+21,Westbound,433,Walnut St & 40th St,246,213,39,0,39.954128,-75.202507
+21,Westbound,21365,Walnut St & 41st St,27,38,40,136.3,39.954463,-75.204994
+21,Westbound,21366,Walnut St & 42nd St,45,76,39,240.6,39.95462,-75.206291
+21,Westbound,21367,Walnut St & 43rd St,59,106,39,136,39.954891,-75.208633
+21,Westbound,21368,Walnut St & 44th St,56,82,38,154.8,39.955078,-75.209976
+21,Westbound,21369,Walnut St & 45th St,50,120,36,189.6,39.955268,-75.21154
+21,Westbound,21370,Walnut St & 46th St,28,51,36,94,39.955513,-75.213531
+21,Westbound,21371,Walnut St & 47th St,22,62,35,181.8,39.955757,-75.215515
+21,Westbound,21372,Walnut St & 48th St,43,102,35,171.4,39.956008,-75.217529
+21,Westbound,21374,Walnut St & 49th St,50,105,35,167.5,39.956256,-75.21949
+21,Westbound,21375,Walnut St & 50th St,22,95,32,157.7,39.956508,-75.221466
+21,Westbound,21376,Walnut St & 51st St,28,74,32,151.5,39.956745,-75.223434
+21,Westbound,434,Walnut St & 52nd St,161,239,31,0,39.956989,-75.225395
+21,Westbound,21377,Walnut St & 53rd St,34,66,30,129.9,39.957233,-75.227371
+21,Westbound,21378,Walnut St & 54th St,42,74,29,150.5,39.957454,-75.229156
+21,Westbound,21379,Walnut St & 55th St,33,82,27,141.9,39.957729,-75.231292
+21,Westbound,21380,Walnut St & 56th St,33,114,26,127.1,39.957973,-75.233383
+21,Westbound,21381,Walnut St & 57th St,55,117,24,116.9,39.958225,-75.235382
+21,Westbound,21382,Walnut St & 58th St,19,76,23,112.4,39.958473,-75.237327
+21,Westbound,21383,Walnut St & 59th St,14,54,21,108.5,39.958705,-75.239303
+21,Westbound,435,Walnut St & 60th St,47,159,19,0,39.958969,-75.241271
+21,Westbound,436,Walnut St & 61st St,15,59,18,92.7,39.959213,-75.243247
+21,Westbound,21384,Walnut St & 62nd St,19,79,17,88.9,39.959457,-75.245239
+21,Westbound,21385,Walnut St & 63rd St,42,80,15,82.8,39.959724,-75.247276
+21,Westbound,130,Walnut St & Broad St - MBNS,245,159,30,0,39.949302,-75.163658
+21,Westbound,31148,Walnut St & Farragut St,20,51,35,90.3,39.955631,-75.214538
