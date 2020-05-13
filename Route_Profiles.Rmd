@@ -19,20 +19,19 @@ library(leaflet)
 library(rsconnect)
 library(readr)
 library(plotly)
+library(DT)
 
 OTP <- read_csv("data/OTP.csv")
+OTP[OTP == 0] <- NaN
+OTP <- OTP[complete.cases(OTP), ]
 Characterization <- read_csv("data/Characterization.csv")
 data <- read_csv("data/data.csv")
 OTP_hist <- read_csv("data/OTP_hist_long.csv")
 opstats <- read_csv("data/opstats.csv")
+routelines <- rgdal::readOGR("https://opendata.arcgis.com/datasets/cc102b601bb947c8bb947937c80e3aa5_0.geojson", verbose='FALSE')
+ridership <- rgdal::readOGR("https://opendata.arcgis.com/datasets/e09e9f98bdf04eada214d2217f3adbf1_0.geojson", verbose='FALSE')
 
-route_selection <- '42'
-plotdat <- subset(data, Route==route_selection)
-OTP_plot <- subset(OTP, Route==route_selection)
-highlight <- subset(opstats, Route==route_selection)
-OTP_hplot <- subset(OTP_hist, Route==route_selection)
-OTP_hplot$value <- round(((OTP_hplot$value)*100),0)
-#OTP_hplot$id <- factor(OTP_hplot$Month, levels = OTP_hplot$Month[order(OTP_hplot$X1)])
+updateData <- reactive(subset(data, Route==input$filterA))
 ```
 
 Sidebar {.sidebar}
@@ -41,7 +40,7 @@ Sidebar {.sidebar}
 ```{r message=FALSE, warning=FALSE}
  selectInput("filterA", label = h4("Route:"), 
     choices = list("16" = 16, "21" = 21, "23" = 23, "42" = 42, "310" = 310, "LUCY Gold" = "LUCY GO"), 
-    selected = 21) 
+    selected = 16) 
 ```
 *Currently under development. For internal use only.*
 
@@ -49,8 +48,19 @@ Sidebar {.sidebar}
 
 [Open Data](http://septaopendata-septa.opendata.arcgis.com/)
 
+*Note: OTP data not availible for all routes at this time.*
+```{r message=FALSE, warning=FALSE}
+route_selection <- '42'
+plotdat <- subset(data, Route==route_selection)
+OTP_plot <- subset(OTP, Route==route_selection)
+highlight <- subset(opstats, Route==route_selection)
+OTP_hplot <- subset(OTP_hist, Route==route_selection)
+OTP_hplot$value <- round(((OTP_hplot$value)*100),0)
+```
+
 Ridership {data-icon="fa-user"}
 ==================
+
 
 Row
 -----------------------------
@@ -58,14 +68,16 @@ Row
 ### Table: Total Ridership, Pass/Hr/Mi/Trip
 
 ```{r message=FALSE, warning=FALSE}
-tabdat <- subset(plotdat, select = -c(X1, Route, mean_ons, mean_mph, max_load, mean_duration))
-names(tabdat)[names(tabdat) == "mean_ppvh"] <- "Mean Pass. per Vehicle"
-names(tabdat)[names(tabdat) == "mean_ppm"] <- "Mean Pass. per Mile"
-names(tabdat)[names(tabdat) == "mean_dist"] <- "Mean Trip Distance"
-names(tabdat)[names(tabdat) == "mean_pm"] <- "Mean Pass. Miles"
-DT::datatable(tabdat, options = list(
-  bPaginate = FALSE
-))
+renderDT({
+  datat1 <- subset(data, Route==input$filterA)
+  datat1 <- subset(datat1, select = -c(X1, Route, mean_ons, mean_mph, max_load, mean_duration))
+  names(datat1)[names(datat1) == "mean_ppvh"] <- "Mean Pass. per Vehicle"
+  names(datat1)[names(datat1) == "mean_ppm"] <- "Mean Pass. per Mile"
+  names(datat1)[names(datat1) == "mean_dist"] <- "Mean Trip Distance"
+  names(datat1)[names(datat1) == "mean_pm"] <- "Mean Pass. Miles"
+  DT::datatable(datat1, options = list(
+    bPaginate = FALSE))
+})
 ```
 
 ### Mean Boardings and Maximum Load
@@ -89,13 +101,13 @@ Row
 
 ```{r message=FALSE, warning=FALSE, results='hide'}
 ggplot(data=plotdat, aes(x=Period, y=mean_ppvh, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_ppvh), vjust=1.6, color="white",
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_ppvh), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5) +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ggtitle("Mean Passengers per Vehicle Hour") +
-  ylab("Passengers")
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ggtitle("Mean Passengers per Vehicle Hour") +
+    ylab("Passengers")
 ```
 
 ### Passenger Miles
@@ -120,45 +132,54 @@ Row
 ### OTP: November 2019
 
 ```{r message=FALSE, warning=FALSE}
-rate1 <- round(((OTP_plot$NOV19)*100),0)
-gauge(rate1, min = 0, max = 100, symbol = '%', gaugeSectors(
-  success = c(85, 100), warning = c(70, 84), danger = c(0, 69)
-))
+renderGauge({
+  datag1 <- subset(OTP, Route==input$filterA)
+  rate1 <- round(((datag1$NOV19)*100),0)
+  gauge(rate1, min = 0, max = 100, symbol = '%', gaugeSectors(
+    success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
+})
 ```
 
 ### OTP: December 2019
 
 ```{r message=FALSE, warning=FALSE}
-rate2 <- round(((OTP_plot$DEC19)*100),0)
-gauge(rate2, min = 0, max = 100, symbol = '%', gaugeSectors(
-  success = c(85, 100), warning = c(70, 84), danger = c(0, 69)
-))
+renderGauge({
+  datag2 <- subset(OTP, Route==input$filterA)
+  rate2 <- round(((datag2$DEC19)*100),0)
+  gauge(rate2, min = 0, max = 100, symbol = '%', gaugeSectors(
+    success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
+})
 ```
 
 ### OTP: January 2020
 ```{r message=FALSE, warning=FALSE}
-rate3 <- round(((OTP_plot$JAN20)*100),0)
-gauge(rate3, min = 0, max = 100, symbol = '%', gaugeSectors(
-  success = c(85, 100), warning = c(70, 84), danger = c(0, 69)
-))
+renderGauge({
+  datag3 <- subset(OTP, Route==input$filterA)
+  rate3 <- round(((datag3$JAN20)*100),0)
+  gauge(rate3, min = 0, max = 100, symbol = '%', gaugeSectors(
+    success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
+})
 ```
 
 ### OTP: February 2020
 ```{r message=FALSE, warning=FALSE}
-rate4 <- round(((OTP_plot$FEB20)*100),0)
-gauge(rate4, min = 0, max = 100, symbol = '%', gaugeSectors(
-  success = c(85, 100), warning = c(70, 84), danger = c(0, 69)
-))
+renderGauge({
+  datag4 <- subset(OTP, Route==input$filterA)
+  rate4 <- round(((datag4$FEB20)*100),0)
+  gauge(rate4, min = 0, max = 100, symbol = '%', gaugeSectors(
+    success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
+})
 ```
 
 ### OTP: March 2020
 ```{r message=FALSE, warning=FALSE}
-rate5 <- round(((OTP_plot$MAR20)*100),0)
-gauge(rate5, min = 0, max = 100, symbol = '%', gaugeSectors(
-  success = c(85, 100), warning = c(70, 84), danger = c(0, 69)
-))
+renderGauge({
+  datag5 <- subset(OTP, Route==input$filterA)
+  rate5 <- round(((datag5$MAR20)*100),0)
+  gauge(rate5, min = 0, max = 100, symbol = '%', gaugeSectors(
+    success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
+})
 ```
-
 
 Row
 -----------------------------
@@ -246,11 +267,11 @@ Row
 ### Cost per Passenger
 ```{r message=FALSE, warning=FALSE}
 a <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=cost_pp, name=Route, color=Classification)) +
-  geom_point(alpha=0.8) +
+  geom_point() +
   geom_point(data=highlight, aes(x=avg_wkdy_pax, y=cost_pp), color='black', size=3) +
   theme_minimal() + 
-  ggtitle("Cost per Passenger") +
-  ylab("Cost ($)") +
+  ggtitle("Peak Vehilces") +
+  ylab("Vehicles") +
   xlab("Average Weekday Passengers")
 ggplotly(a)
 ```
@@ -297,8 +318,7 @@ ggplotly(d)
 Map {data-icon="fa-map"}
 ==================
 ```{r message=FALSE, warning=FALSE}
-routelines <- rgdal::readOGR("https://opendata.arcgis.com/datasets/cc102b601bb947c8bb947937c80e3aa5_0.geojson", verbose='FALSE')
-ridership <- rgdal::readOGR("https://opendata.arcgis.com/datasets/e09e9f98bdf04eada214d2217f3adbf1_0.geojson", verbose='FALSE')
+
 
 maproute <- subset(routelines, Route==42)
 ridership_42 <- subset(ridership, Route==42)
