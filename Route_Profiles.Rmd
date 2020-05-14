@@ -5,12 +5,24 @@ output:
     orientation: rows
     vertical_layout: fill
     logo: septa.png
-    favicon: septa.png
+    favicon: favicon.ico
     source_code: embed
 runtime: shiny
 ---
+<style>                     
+.navbar {
+  background-color:#071689;
+  border-color:black;
+}
+.navbar-brand {
+color:white!important;
+}
+</style>  
 
 ```{r global, message=FALSE, warning=FALSE, include=FALSE}
+#Created by Ben Dodson, Service Planning Department
+#(c) Southeastern Pennsylvania Transportation Authority, 2020
+
 library(flexdashboard)
 library(dplyr)
 library(ggplot2)
@@ -20,11 +32,11 @@ library(rsconnect)
 library(readr)
 library(plotly)
 library(DT)
+library(gridExtra)
 
 OTP <- read_csv("data/OTP.csv")
 OTP[OTP == 0] <- NaN
 OTP <- OTP[complete.cases(OTP), ]
-Characterization <- read_csv("data/Characterization.csv")
 data <- read_csv("data/data.csv")
 OTP_hist <- read_csv("data/OTP_hist_long.csv")
 opstats <- read_csv("data/opstats.csv")
@@ -41,20 +53,16 @@ Sidebar {.sidebar}
     choices = list("16" = 16, "21" = 21, "23" = 23, "42" = 42, "310" = 310, "LUCY Gold" = "LUCY GO"), 
     selected = 16) 
 ```
-*Currently under development. For internal use only.*
-
-*Right-click on a chart to save it as an image for use in a document or presentation.*
-
 [Open Data](http://septaopendata-septa.opendata.arcgis.com/)
 
-*Note: OTP data not availible for all routes at this time.*
-```{r message=FALSE, warning=FALSE}
-route_selection <- '42'
-plotdat <- subset(data, Route==route_selection)
-OTP_plot <- subset(OTP, Route==route_selection)
+
+*Data from 2019 Route Statistics Book and September 2019-March 2020 ridership observations*
 
 
-```
+*Notice: Currently under development. For internal use only. OTP data not availible for all routes at this time.*
+
+
+*Updated: 14 May 2020. Created by SEPTA. Contact Service Planning with questions.*
 
 Ridership {data-icon="fa-user"}
 ==================
@@ -63,18 +71,18 @@ Ridership {data-icon="fa-user"}
 Row
 -----------------------------
 
-### Table: Total Ridership, Pass/Hr/Mi/Trip
+### Ridership Statistics
 
 ```{r message=FALSE, warning=FALSE}
 renderDT({
   datat1 <- subset(data, Route==input$filterA)
+  titlet1 <- sprintf("Route %s", input$filterA)
   datat1 <- subset(datat1, select = -c(X1, Route, mean_ons, mean_mph, max_load, mean_duration))
   names(datat1)[names(datat1) == "mean_ppvh"] <- "Mean Pass. per Vehicle"
   names(datat1)[names(datat1) == "mean_ppm"] <- "Mean Pass. per Mile"
   names(datat1)[names(datat1) == "mean_dist"] <- "Mean Trip Distance"
   names(datat1)[names(datat1) == "mean_pm"] <- "Mean Pass. Miles"
-  DT::datatable(datat1, options = list(
-    bPaginate = FALSE))
+  DT::datatable(datat1, caption=titlet1, options = list(dom='t', bPaginate = FALSE, ordering=F))
 })
 ```
 
@@ -85,16 +93,17 @@ renderPlot({
   bdat <- subset(data, Route==input$filterA)
   titleb <- sprintf("Average Boardings (Bars) + Max Load (Line) - Route %s", input$filterA)
   b <- ggplot(data=bdat, aes(x=Period, y=mean_ons, fill=Period)) +
-    geom_bar(stat='identity') +  
-    geom_text(aes(label=mean_ons), vjust=1.6, color="white",
-            position = position_stack(vjust = 0.5), size=3.5) +
+    geom_bar(stat='identity') + 
     geom_line(data=bdat, aes(x=Period, y=max_load), group=1, size=2, color='grey') +
-    geom_point(data=bdat, aes(x=Period, y=max_load, size=4, fill='black')) +
-    theme_minimal() + 
+    geom_point(data=bdat, aes(x=Period, y=max_load, size=4)) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ggtitle(titleb) +
     ylab("Passengers")
-  print(b)
+  b2dat <- subset(bdat, select= c("Period", "mean_ons", "max_load"))
+  names(b2dat) <- c("Period", "Boardings", "Max Load")
+  tbl <- tableGrob(b2dat, rows=NULL)
+  grid.arrange(b, tbl, widths=c(2,1), nrow=1, as.table=TRUE)
 })
 ```
 
@@ -109,8 +118,8 @@ renderPlot({
   c <- ggplot(data=cdat, aes(x=Period, y=mean_ppvh, fill=Period)) +
     geom_bar(stat='identity') +  
     geom_text(aes(label=mean_ppvh), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-    theme_minimal() + 
+            position = position_dodge(0.9), size=5) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ggtitle(titlec) +
     ylab("Passengers")
@@ -127,8 +136,8 @@ renderPlot({
   d <- ggplot(data=ddat, aes(x=Period, y=mean_pm, fill=Period)) +
     geom_bar(stat='identity') +  
     geom_text(aes(label=mean_pm), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-    theme_minimal() + 
+            position = position_dodge(0.9), size=5) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ggtitle(titled) +
     ylab("Passenger Miles per Trip")
@@ -147,9 +156,8 @@ Row
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag1 <- subset(OTP, Route==input$filterA)
-  titleg1 <- sprintf("Route %s", input$filterA)
   rate1 <- round(((datag1$NOV19)*100),0)
-  gauge(rate1, min = 0, max = 100, symbol = '%', label=titleg1, gaugeSectors(
+  gauge(rate1, min = 0, max = 100, symbol = '%', gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -159,9 +167,8 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag2 <- subset(OTP, Route==input$filterA)
-  titleg2 <- sprintf("Route %s", input$filterA)
   rate2 <- round(((datag2$DEC19)*100),0)
-  gauge(rate2, min = 0, max = 100, symbol = '%', label=titleg2, gaugeSectors(
+  gauge(rate2, min = 0, max = 100, symbol = '%', gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -170,9 +177,8 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag3 <- subset(OTP, Route==input$filterA)
-  titleg3 <- sprintf("Route %s", input$filterA)
   rate3 <- round(((datag3$JAN20)*100),0)
-  gauge(rate3, min = 0, max = 100, symbol = '%', label=titleg3, gaugeSectors(
+  gauge(rate3, min = 0, max = 100, symbol = '%', gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -181,9 +187,8 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag4 <- subset(OTP, Route==input$filterA)
-  titleg4 <- sprintf("Route %s", input$filterA)
   rate4 <- round(((datag4$FEB20)*100),0)
-  gauge(rate4, min = 0, max = 100, symbol = '%', label=titleg4, gaugeSectors(
+  gauge(rate4, min = 0, max = 100, symbol = '%', gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -192,9 +197,8 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag5 <- subset(OTP, Route==input$filterA)
-  titleg5 <- sprintf("Route %s", input$filterA)
   rate5 <- round(((datag5$MAR20)*100),0)
-  gauge(rate5, min = 0, max = 100, symbol = '%', label=titleg5, gaugeSectors(
+  gauge(rate5, min = 0, max = 100, symbol = '%', gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -207,70 +211,69 @@ Row
 ```{r message=FALSE, warning=FALSE}
 renderPlot({
   jdat <- subset(data, Route==input$filterA)
+  titlej <- sprintf("Mean Miles per Hour - Route %s", input$filter)
   j <- ggplot(data=jdat, aes(x=Period, y=mean_mph, fill=Period)) +
     geom_bar(stat='identity') +  
     geom_text(aes(label=mean_mph), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-    ggtitle("Mean Miles per Hour") +
-    theme_minimal() + 
+            position = position_dodge(0.9), size=5) +
+    ggtitle(titlej) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ylab("Miles per Hour")
   print(j)
 })
 ```
 
-----------------------------
 ### Trip Duration
 
 ```{r message=FALSE, warning=FALSE}
 renderPlot({
   kdat <- subset(data, Route==input$filterA)
+  titlek <- sprintf("Mean Trip Duration - Route %s", input$filter)
   k <- ggplot(data=kdat, aes(x=Period, y=mean_duration, fill=Period)) +
     geom_bar(stat='identity') +  
     geom_text(aes(label=mean_duration), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-    ggtitle("Mean Trip Duration") +
-    theme_minimal() + 
+            position = position_dodge(0.9), size=5) +
+    ggtitle(titlek) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ylab("Minutes")
   print(k)
 })
 ```
 
-----------------------------
 ### Average Passengers per Mile
 
 ```{r message=FALSE, warning=FALSE}
 renderPlot({
   ldat <- subset(data, Route==input$filterA)
+  titlel <- sprintf("Mean Passengers per Mile - Route %s", input$filter)
   l <- ggplot(data=ldat, aes(x=Period, y=mean_ppm, fill=Period)) +
     geom_bar(stat='identity') +  
-    geom_text(aes(label=mean_ppm), vjust=1.6, color="white", position = position_dodge(0.9), size=3.5) +
+    geom_text(aes(label=mean_ppm), vjust=1.6, color="white", position = position_dodge(0.9), size=5) +
     ggtitle("Mean Passengers per Mile") +
-    theme_minimal() + 
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
     ylab("Passengers per Mile")
   print(l)
 })
 ```
 
-Operations {data-icon="fa-bus"}
-==================
-
 Row
 -----------------------------
 
-### OTP
+### 12-month On Time Performance
 
 ```{r message=FALSE, warning=FALSE}
 renderPlot({
   mdat <- subset(OTP_hist, Route==input$filterA)
+  titlem <- sprintf("12-month On-Time Performance - Route %s", input$filter)
   mdat$value <- round(((mdat$value)*100),0)
   m <- ggplot(mdat, aes(fill=category, y=value, x=Date)) + 
     geom_bar(position="stack", stat="identity") +
-    geom_text(aes(label=value), color="white", size = 3, position = position_stack(vjust = 0.5)) +
-    theme_minimal() + 
-    ggtitle("12-month On-Time Performance") +
+    geom_text(aes(label=value), color="white", size = 5, position = position_stack(vjust = 0.5)) +
+    theme_minimal(base_size = 15) + 
+    ggtitle(titlem) +
     ylab("Percentage") +
     scale_fill_manual(name= " ", values = c("#00BA38", "#F8766D", "#619CFF"), labels = c("% Early", "% Late", "% On-Time")) +
     scale_x_discrete(breaks=c("2019-04", "2019-06", "2019-08", "2019-10", "2019-12", "2020-02"))
@@ -283,12 +286,13 @@ renderPlot({
 ```{r message=FALSE, warning=FALSE}
 renderPlot({
   n1dat <- subset(data, Route==input$filterA)
+  titlen1 <- sprintf("Passengers per Vehicle Hour - Route %s", input$filterA)
   n1 <- ggplot(data=n1dat, aes(x=Period, y=mean_ppvh, fill=Period)) +
     geom_bar(stat='identity') +  
-    geom_text(aes(label=mean_ppvh), vjust=1.6, color="white", position = position_dodge(0.9), size=3.5) +
-    theme_minimal() + 
+    geom_text(aes(label=mean_ppvh), vjust=1.6, color="white", position = position_dodge(0.9), size=5) +
+    theme_minimal(base_size = 15) + 
     theme(legend.position = "none") +
-    ggtitle("Average Passengers per Vehicle Hour") +
+    ggtitle(titlen1) +
     ylab("Passengers")
   print(n1)
 })
@@ -375,6 +379,81 @@ output$rout <- renderPlotly({
 })
 plotlyOutput('rout')
 ```
+
+Statistics {data-icon="fa-table"}
+==================
+
+Row
+-----------------------------
+### Operating Statistics
+
+```{r message=FALSE, warning=FALSE}
+renderDT({
+  datat2 <- subset(opstats, Route==input$filterA)
+  titlet2 <- sprintf("Route %s", input$filterA)
+  datat2 <- subset(datat2, select = c("owrm", "avg_wkdy_pax", "vh", "vm", "peakv"))  
+  names(datat2)[names(datat2) == "owrm"] <- "One-Way Route Miles"
+  names(datat2)[names(datat2) == "avg_wkdy_pax"] <- "Daily Average Weekday Passengers"
+  names(datat2)[names(datat2) == "vh"] <- "Annual Vehicle Hours"
+  names(datat2)[names(datat2) == "vm"] <- "Annual Vehicle Miles"
+  names(datat2)[names(datat2) == "peakv"] <- "Peak Vehicles"
+  datat2 <- t(datat2)
+  DT::datatable(datat2, colnames=c("", ""), caption=titlet2, options = list(dom='t', bPaginate = FALSE, ordering=F))
+})
+```
+
+### Characteristics
+```{r message=FALSE, warning=FALSE}
+renderDT({
+  datat3 <- subset(opstats, Route==input$filterA)
+  titlet3 <- sprintf("Route %s", input$filterA)
+  datat3 <- subset(datat3, select = c("Description", "Classification", "opdist", "county", "vehicle size", "annual_pax"))
+  names(datat3)[names(datat3) == "opdist"] <- "Operating District"
+  names(datat3)[names(datat3) == "county"] <- "Counties"
+  names(datat3)[names(datat3) == "vehicle size"] <- "Vehicle Size"
+  names(datat3)[names(datat3) == "annual_pax"] <- "Annual Passengers"
+  datat3 <- t(datat3)
+  DT::datatable(datat3, colnames=c("", ""), caption=titlet3, options = list(dom='t', bPaginate = FALSE, ordering=F))
+})
+```
+
+### Financial Performance
+```{r message=FALSE, warning=FALSE}
+renderDT({
+  datat4 <- subset(opstats, Route==input$filterA)
+  titlet4 <- sprintf("Route %s", input$filterA)
+  datat4 <- subset(datat4, select = c("cost_pp", "op_ratio", "expenses", "revenue"))
+  names(datat4)[names(datat4) == "cost_pp"] <- "Cost per Passenger"
+  names(datat4)[names(datat4) == "op_ratio"] <- "Recovery Ratio"
+  names(datat4)[names(datat4) == "expenses"] <- "Expenses"
+  names(datat4)[names(datat4) == "revenue"] <- "Revenue"
+  datat4 <- t(datat4)
+  DT::datatable(datat4, colnames=c("", ""), caption=titlet4, options = list(dom='t', bPaginate = FALSE, ordering=F))
+})
+```
+
+Row
+-----------------------------
+### Operating Ratio
+```{r message=FALSE, warning=FALSE}
+output$wout <- renderPlotly({
+  dataw <- opstats
+  dataw$op_ratio <- round(((dataw$op_ratio)*100),0)
+  highlightw <- subset(dataw, Route==input$filterA)
+  titlew <- sprintf("Operating Ratio - Route %s", input$filterA)
+  w <- ggplot(data=dataw, aes(x=avg_wkdy_pax, y=op_ratio, name=Route, color=Classification)) +
+    geom_point() +
+    geom_point(data=highlightw, aes(x=avg_wkdy_pax, y=op_ratio), color='black', size=3) +
+    theme_minimal() + 
+    ggtitle(titlew) +
+    ylab("Operating Ratio (%)") +
+    xlab("Average Weekday Passengers")
+  buildw <- plotly_build(w)
+  buildw
+})
+plotlyOutput('wout')
+```
+
 
 Map {data-icon="fa-map"}
 ==================
