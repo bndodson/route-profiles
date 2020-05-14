@@ -31,7 +31,6 @@ opstats <- read_csv("data/opstats.csv")
 routelines <- rgdal::readOGR("https://opendata.arcgis.com/datasets/cc102b601bb947c8bb947937c80e3aa5_0.geojson", verbose='FALSE')
 ridership <- rgdal::readOGR("https://opendata.arcgis.com/datasets/e09e9f98bdf04eada214d2217f3adbf1_0.geojson", verbose='FALSE')
 
-updateData <- reactive(subset(data, Route==input$filterA))
 ```
 
 Sidebar {.sidebar}
@@ -53,9 +52,8 @@ Sidebar {.sidebar}
 route_selection <- '42'
 plotdat <- subset(data, Route==route_selection)
 OTP_plot <- subset(OTP, Route==route_selection)
-highlight <- subset(opstats, Route==route_selection)
-OTP_hplot <- subset(OTP_hist, Route==route_selection)
-OTP_hplot$value <- round(((OTP_hplot$value)*100),0)
+
+
 ```
 
 Ridership {data-icon="fa-user"}
@@ -82,45 +80,60 @@ renderDT({
 
 ### Mean Boardings and Maximum Load
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_ons, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_ons), vjust=1.6, color="white",
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  bdat <- subset(data, Route==input$filterA)
+  titleb <- sprintf("Average Boardings (Bars) + Max Load (Line) - Route %s", input$filterA)
+  b <- ggplot(data=bdat, aes(x=Period, y=mean_ons, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_ons), vjust=1.6, color="white",
             position = position_stack(vjust = 0.5), size=3.5) +
-  geom_line(data=plotdat, aes(x=Period, y=max_load), group=1, size=2, color='grey') +
-  geom_point(data=plotdat, aes(x=Period, y=max_load, size=4, fill='black')) +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ggtitle("Average Boardings (Bars, Labels) + Max Load (Line)") +
-  ylab("Passengers")
+    geom_line(data=bdat, aes(x=Period, y=max_load), group=1, size=2, color='grey') +
+    geom_point(data=bdat, aes(x=Period, y=max_load, size=4, fill='black')) +
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ggtitle(titleb) +
+    ylab("Passengers")
+  print(b)
+})
 ```
 
 Row
 ----------------------------
 ### Passengers per Vehicle Hour
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_ppvh, fill=Period)) +
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  cdat <- subset(data, Route==input$filterA)
+  titlec <- sprintf("Mean Passengers per Vehicle Hour - Route %s", input$filterA)
+  c <- ggplot(data=cdat, aes(x=Period, y=mean_ppvh, fill=Period)) +
     geom_bar(stat='identity') +  
     geom_text(aes(label=mean_ppvh), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5) +
     theme_minimal() + 
     theme(legend.position = "none") +
-    ggtitle("Mean Passengers per Vehicle Hour") +
+    ggtitle(titlec) +
     ylab("Passengers")
+  print(c)
+})
 ```
 
 ### Passenger Miles
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_pm, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_pm), vjust=1.6, color="white",
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  ddat <- subset(data, Route==input$filterA)
+  titled <- sprintf("Passenger Miles per Trip - Route %s", input$filterA)
+  d <- ggplot(data=ddat, aes(x=Period, y=mean_pm, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_pm), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5) +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ggtitle("Average Passenger Miles") +
-  ylab("Passenger Miles per Trip")
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ggtitle(titled) +
+    ylab("Passenger Miles per Trip")
+  print(d)
+})
 ```
 
 Performance {data-icon="fa-clipboard-check"}
@@ -134,8 +147,9 @@ Row
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag1 <- subset(OTP, Route==input$filterA)
+  titleg1 <- sprintf("Route %s", input$filterA)
   rate1 <- round(((datag1$NOV19)*100),0)
-  gauge(rate1, min = 0, max = 100, symbol = '%', gaugeSectors(
+  gauge(rate1, min = 0, max = 100, symbol = '%', label=titleg1, gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -145,8 +159,9 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag2 <- subset(OTP, Route==input$filterA)
+  titleg2 <- sprintf("Route %s", input$filterA)
   rate2 <- round(((datag2$DEC19)*100),0)
-  gauge(rate2, min = 0, max = 100, symbol = '%', gaugeSectors(
+  gauge(rate2, min = 0, max = 100, symbol = '%', label=titleg2, gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -155,8 +170,9 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag3 <- subset(OTP, Route==input$filterA)
+  titleg3 <- sprintf("Route %s", input$filterA)
   rate3 <- round(((datag3$JAN20)*100),0)
-  gauge(rate3, min = 0, max = 100, symbol = '%', gaugeSectors(
+  gauge(rate3, min = 0, max = 100, symbol = '%', label=titleg3, gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -165,8 +181,9 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag4 <- subset(OTP, Route==input$filterA)
+  titleg4 <- sprintf("Route %s", input$filterA)
   rate4 <- round(((datag4$FEB20)*100),0)
-  gauge(rate4, min = 0, max = 100, symbol = '%', gaugeSectors(
+  gauge(rate4, min = 0, max = 100, symbol = '%', label=titleg4, gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -175,8 +192,9 @@ renderGauge({
 ```{r message=FALSE, warning=FALSE}
 renderGauge({
   datag5 <- subset(OTP, Route==input$filterA)
+  titleg5 <- sprintf("Route %s", input$filterA)
   rate5 <- round(((datag5$MAR20)*100),0)
-  gauge(rate5, min = 0, max = 100, symbol = '%', gaugeSectors(
+  gauge(rate5, min = 0, max = 100, symbol = '%', label=titleg5, gaugeSectors(
     success = c(79, 100), warning = c(70, 78), danger = c(0, 69)))
 })
 ```
@@ -186,43 +204,54 @@ Row
 
 ### Miles per Hour
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_mph, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_mph), vjust=1.6, color="white",
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  jdat <- subset(data, Route==input$filterA)
+  j <- ggplot(data=jdat, aes(x=Period, y=mean_mph, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_mph), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5) +
-  ggtitle("Mean Miles per Hour") +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ylab("Miles per Hour")
+    ggtitle("Mean Miles per Hour") +
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ylab("Miles per Hour")
+  print(j)
+})
 ```
 
 ----------------------------
 ### Trip Duration
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_duration, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_duration), vjust=1.6, color="white",
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  kdat <- subset(data, Route==input$filterA)
+  k <- ggplot(data=kdat, aes(x=Period, y=mean_duration, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_duration), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5) +
-  ggtitle("Mean Trip Duration") +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ylab("Minutes")
+    ggtitle("Mean Trip Duration") +
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ylab("Minutes")
+  print(k)
+})
 ```
 
 ----------------------------
 ### Average Passengers per Mile
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_ppm, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_ppm), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-  ggtitle("Mean Passengers per Mile") +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ylab("Passengers per Mile")
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  ldat <- subset(data, Route==input$filterA)
+  l <- ggplot(data=ldat, aes(x=Period, y=mean_ppm, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_ppm), vjust=1.6, color="white", position = position_dodge(0.9), size=3.5) +
+    ggtitle("Mean Passengers per Mile") +
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ylab("Passengers per Mile")
+  print(l)
+})
 ```
 
 Operations {data-icon="fa-bus"}
@@ -233,28 +262,36 @@ Row
 
 ### OTP
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(OTP_hplot, aes(fill=category, y=value, x=Date)) + 
-  geom_bar(position="stack", stat="identity") +
-  geom_text(aes(label=value), color="white", size = 3, position = position_stack(vjust = 0.5)) +
-  theme_minimal() + 
-  ggtitle("12-month On-Time Performance") +
-  ylab("Percentage") +
-  scale_fill_manual(name= " ", values = c("#00BA38", "#F8766D", "#619CFF"), labels = c("% Early", "% Late", "% On-Time")) +
-  scale_x_discrete(breaks=c("2019-04", "2019-06", "2019-08", "2019-10", "2019-12", "2020-02"))
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  mdat <- subset(OTP_hist, Route==input$filterA)
+  mdat$value <- round(((mdat$value)*100),0)
+  m <- ggplot(mdat, aes(fill=category, y=value, x=Date)) + 
+    geom_bar(position="stack", stat="identity") +
+    geom_text(aes(label=value), color="white", size = 3, position = position_stack(vjust = 0.5)) +
+    theme_minimal() + 
+    ggtitle("12-month On-Time Performance") +
+    ylab("Percentage") +
+    scale_fill_manual(name= " ", values = c("#00BA38", "#F8766D", "#619CFF"), labels = c("% Early", "% Late", "% On-Time")) +
+    scale_x_discrete(breaks=c("2019-04", "2019-06", "2019-08", "2019-10", "2019-12", "2020-02"))
+  print(m)
+})
 ```
 
 ### Passengers per Vehicle Hour
 
-```{r message=FALSE, warning=FALSE, results='hide'}
-ggplot(data=plotdat, aes(x=Period, y=mean_ppvh, fill=Period)) +
-  geom_bar(stat='identity') +  
-  geom_text(aes(label=mean_ppvh), vjust=1.6, color="white",
-            position = position_dodge(0.9), size=3.5) +
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  ggtitle("Average Passengers per Vehicle Hour") +
-  ylab("Passengers")
+```{r message=FALSE, warning=FALSE}
+renderPlot({
+  n1dat <- subset(data, Route==input$filterA)
+  n1 <- ggplot(data=n1dat, aes(x=Period, y=mean_ppvh, fill=Period)) +
+    geom_bar(stat='identity') +  
+    geom_text(aes(label=mean_ppvh), vjust=1.6, color="white", position = position_dodge(0.9), size=3.5) +
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    ggtitle("Average Passengers per Vehicle Hour") +
+    ylab("Passengers")
+  print(n1)
+})
 ```
 
 Comparison {data-icon="fa-chart-line"}
@@ -266,26 +303,38 @@ Row
 
 ### Cost per Passenger
 ```{r message=FALSE, warning=FALSE}
-a <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=cost_pp, name=Route, color=Classification)) +
-  geom_point() +
-  geom_point(data=highlight, aes(x=avg_wkdy_pax, y=cost_pp), color='black', size=3) +
-  theme_minimal() + 
-  ggtitle("Peak Vehilces") +
-  ylab("Vehicles") +
-  xlab("Average Weekday Passengers")
-ggplotly(a)
+output$oout <- renderPlotly({
+  highlighto <- subset(opstats, Route==input$filterA)
+  titleo <- sprintf("Cost per Passenger - Route %s", input$filterA)
+  o <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=cost_pp, name=Route, color=Classification)) +
+    geom_point() +
+    geom_point(data=highlighto, aes(x=avg_wkdy_pax, y=cost_pp), color='black', size=3) +
+    theme_minimal() + 
+    ggtitle(titleo) +
+    ylab("Vehicles") +
+    xlab("Average Weekday Passengers")
+  buildo <- plotly_build(o)
+  buildo
+})
+plotlyOutput('oout') 
 ```
 
 ### Peak Vehicles
 ```{r message=FALSE, warning=FALSE}
-b <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=peakv, name=Route, color=Classification)) +
-  geom_point() +
-  geom_point(data=highlight, aes(x=avg_wkdy_pax, y=peakv), color='black', size=3) +
-  theme_minimal() + 
-  ggtitle("Peak Vehilces") +
-  ylab("Vehicles") +
-  xlab("Average Weekday Passengers")
-ggplotly(b)
+output$pout <- renderPlotly({
+  highlightp <- subset(opstats, Route==input$filterA)
+  titlep <- sprintf("Peak Vehicles - Route %s", input$filterA)
+  p <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=peakv, name=Route, color=Classification)) +
+    geom_point() +
+    geom_point(data=highlightp, aes(x=avg_wkdy_pax, y=peakv), color='black', size=3) +
+    theme_minimal() + 
+    ggtitle(titlep) +
+    ylab("Vehicles") +
+    xlab("Average Weekday Passengers")
+  buildp <- plotly_build(p)
+  buildp
+})
+plotlyOutput('pout')
 ```
 
 Row
@@ -293,73 +342,87 @@ Row
 
 ### Passengers per Vehicle Hour
 ```{r message=FALSE, warning=FALSE}
-c <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=pprh, name=Route, color=Classification)) +
-  geom_point() +
-  geom_point(data=highlight, aes(x=avg_wkdy_pax, y=pprh), color='black', size=3) +
-  theme_minimal() + 
-  ggtitle("Passengers per Revenue Hour") +
-  ylab("Passengers") +
-  xlab("Average Weekday Passengers")
-ggplotly(c)
+output$qout <- renderPlotly({
+  highlightq <- subset(opstats, Route==input$filterA)
+  titleq <- sprintf("Passengers per Revenue Hour - Route %s", input$filterA)
+  q <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=pprh, name=Route, color=Classification)) +
+    geom_point() +
+    geom_point(data=highlightq, aes(x=avg_wkdy_pax, y=pprh), color='black', size=3) +
+    theme_minimal() + 
+    ggtitle(titleq) +
+    ylab("Passengers") +
+    xlab("Average Weekday Passengers")
+  buildq <- plotly_build(q)
+  buildq
+})
+plotlyOutput('qout')
 ```
 
 ### Vehicle Miles
-```{r message=FALSE, warning=FALSE}
-d <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=vm, name=Route, color=Classification)) +
-  geom_point() +
-  geom_point(data=highlight, aes(x=avg_wkdy_pax, y=vm), color='black', size=3) +
-  theme_minimal() + 
-  ggtitle("Vehicle Miles") +
-  ylab("Vehicle Miles") +
-  xlab("Average Weekday Passengers")
-ggplotly(d)
+```{r message=FALSE, warning=FALSE, cache=TRUE}
+output$rout <- renderPlotly({
+  highlightr <- subset(opstats, Route==input$filterA)
+  titler <- sprintf("Vehicle Miles - Route %s", input$filterA)
+  r <- ggplot(data=opstats, aes(x=avg_wkdy_pax, y=vm, name=Route, color=Classification)) +
+    geom_point() +
+    geom_point(data=highlightr, aes(x=avg_wkdy_pax, y=vm), color='black', size=3) +
+    theme_minimal() + 
+    ggtitle(titler) +
+    ylab("Vehicle Miles") +
+    xlab("Average Weekday Passengers")
+  buildr <- plotly_build(r)
+  buildr
+})
+plotlyOutput('rout')
 ```
 
 Map {data-icon="fa-map"}
 ==================
 ```{r message=FALSE, warning=FALSE}
-
-
-maproute <- subset(routelines, Route==42)
-ridership_42 <- subset(ridership, Route==42)
-ridership_42E <- subset(ridership_42, Direction == "Eastbound")
-ridership_42W <- subset(ridership_42, Direction == "Westbound")
-
-
-m = leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron, group =  "Positron") %>%
+renderLeaflet({
+  mapselection <- input$filterA
+  mapselection[mapselection=='LUCY GO'] <- 'LUCYGO'
+  maproute <- subset(routelines, Route==mapselection)
+  ridership <- subset(ridership, Route==mapselection)
+  ridershipa <- subset(ridership, Direction == "Eastbound" | Direction=="Northbound" | Direction=="Inbound" | Direction=="Loop")
+  ridershipb <- subset(ridership, Direction == "Westbound" | Direction=="Southbound" | Direction=="Outbound")
+  routeno <- sprintf("Route %s", input$filterA)
+  routeA <- sprintf("Ridership %s", ridershipa$Direction)
+  routeB <- sprintf("Ridership %s", ridershipb$Direction)
+  
+  s <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron, group =  "Basemap") %>%
   addPolylines(data = maproute,
                weight = 3, 
-               group = "Route 42") %>%
-  addCircles(data = ridership_42E,
-             weight = 1, 
-             color = '#8000ff',
-             radius = ridership_42E$Weekday_Boards+ridership_42E$Weekday_Leaves, 
-             popup = paste("Stop:", ridership_42E$Stop_Name, "<br>",
-                           "Direction:", ridership_42E$Direction, "<br>",
-                           "Weekday Boards:", ridership_42E$Weekday_Boards,"<br>",
-                           "Weekday Leaves:", ridership_42E$Weekday_Leaves, "<br>"),
-             group = "Ridership Eastbound"
-  )%>%
-  addCircles(data = ridership_42W,
+               group = routeno) %>%
+  addCircles(data = ridershipa,
              weight = 1, 
              color = 'royalblue',
-             radius = ridership_42W$Weekday_Boards+ridership_42W$Weekday_Leaves,
-             popup = paste("Stop:", ridership_42W$Stop_Name, "<br>",
-                           "Direction:", ridership_42W$Direction, "<br>",
-                           "Weekday Boards:", ridership_42W$Weekday_Boards, "<br>",
-                           "Weekday Leaves:", ridership_42W$Weekday_Leaves, "<br>"), 
-             group = "Ridership Westbound")%>%
+             radius = ridershipa$Weekday_Boards+ridershipa$Weekday_Leaves, 
+             popup = paste("Stop:", ridershipa$Stop_Name, "<br>",
+                           "Direction:", ridershipa$Direction, "<br>",
+                           "Weekday Boards:", ridershipa$Weekday_Boards,"<br>",
+                           "Weekday Leaves:", ridershipa$Weekday_Leaves, "<br>"),
+             group = routeA
+  )%>%
+  addCircles(data = ridershipb,
+             weight = 1, 
+             color = '#ff9900',
+             radius = ridershipb$Weekday_Boards+ridershipb$Weekday_Leaves,
+             popup = paste("Stop:", ridershipb$Stop_Name, "<br>",
+                           "Direction:", ridershipb$Direction, "<br>",
+                           "Weekday Boards:", ridershipb$Weekday_Boards, "<br>",
+                           "Weekday Leaves:", ridershipb$Weekday_Leaves, "<br>"), 
+             group = routeB)%>%
   addLayersControl(
-    overlayGroups = c("Route 42", "Ridership Eastbound", "Ridership Westbound"),
+    overlayGroups = c("Basemap", routeno, routeA, routeB),
     options = layersControlOptions(collapsed = FALSE)
   )%>%
   addLegend(
     position = "bottomright",
-    colors = c("royalblue", "#8000ff"), 
-    labels = c("Ridership Eastbound", "Ridership Westbound")
-  )
+    colors = c("royalblue", "#ff9900"), 
+    labels = c("RouteA", "RouteB"))
+  s
+})
 
-
-m
 ```
